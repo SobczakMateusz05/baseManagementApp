@@ -14,6 +14,15 @@ body{
     height: 100%;
     background: #F0F1F2;
 }
+.disable-selection {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+                                
+}
 
 /*HEADER*/
 
@@ -81,6 +90,13 @@ main{
 .left ul li a:hover{
     background: #04BF68;
     border-radius: 5px;
+    box-shadow: #01261C 2px 2px 15px;
+    cursor: pointer;
+}
+.left h2:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color:#025949;
 }
 
 /*RIGHT*/
@@ -88,9 +104,28 @@ main{
 .right{
     width: 80%;
     padding: 5px;
+}
+.base{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+h2, h3, h4{
+    padding: 15px;
+    color: #01261C;
+}
+.center{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.disable{
+    display:none !important;
+}
+.managerecord{
+    display: flex;
 }
 
 /*FOOTER*/

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylecontrol.css">
+    <script src="script.js"></script>
     <title>Panel Sterowania Bazą Danych</title>
 </head>
 <body>
@@ -16,26 +17,38 @@
     <main>
         <div class="mainblock">
             <div class="left">
-                <h2>
+                <h2 class="disable-selection" onclick="base()">
                     Menu opcji
                 </h2>
                 <ul>
                     <li>
-                        <a href="#">Zarządzanie rekordami</a>
+                        <a class="disable-selection" onclick="managerecord()">Zarządzanie rekordami</a>
                     </li>
                     <li>
-                        <a href="#">Wyświetlanie tabel</a>
+                        <a class="disable-selection" onclick="showrecord()">Wyświetlanie zawartości tabel</a>
                     </li>
                     <li>
-                        <a href="#">Kwerendy</a>
+                        <a class="disable-selection" onclick="query()">Kwerendy</a>
                     </li>
                     <li>
-                        <a href="#">Zarządzanie tabelami</a>
+                        <a class="disable-selection" onclick="managetable()">Zarządzanie tabelami</a>
+                    </li>
+                    <li>
+                        <a class="disable-selection" onclick="showtable()">Wyświetlanie listy tabel</a>
                     </li>
                 </ul>
             </div>
             <div class="right">
-
+                <div class="option base">
+                    <div class="center">
+                        <h1>Witaj w swoim panelu sterowania bazą [login]!</h1>
+                        <h2>Twoje uprawnienia są na poziomie administartora.</h2>
+                        <h3>Aby przejsć do jakieś operacji skorzystaj z panelu po lewej</h3>
+                    </div>
+                    <div class="center down">
+                        <h4>Nie zepsuj nic 😀</h4>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
