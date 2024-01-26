@@ -34,15 +34,6 @@ function managetable(){
     }
     record.classList.toggle("disable");
 }
-function showtable(){
-    var record = document.getElementsByClassName("showtable")[0];
-    var show = document.getElementsByClassName("option");
-    for (let i=0; i<show.length; i++) {
-        var el = show[i];
-        el.classList.add("disable");
-    }
-    record.classList.toggle("disable");
-}
 function base(){
     var record = document.getElementsByClassName("base")[0];
     var show = document.getElementsByClassName("option");
