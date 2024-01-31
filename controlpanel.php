@@ -6,6 +6,9 @@
     }
     require_once "function.php";
 ?>
+<?php
+    
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -47,7 +50,7 @@
             <div class="right">
                 <div class="option base">
                     <div class="center">
-                        <h1>Witaj w swoim panelu sterowania bazą <?php echo $_SESSION['user']; ?>!</h1>
+                        <h1>Witaj <?php echo ucfirst($_SESSION['user']); ?> w swoim panelu sterowania bazą!</h1>
                         <h2>Twoje uprawnienia są na poziomie administartora.</h2>
                         <h3>Aby przejsć do jakieś operacji skorzystaj z panelu po lewej</h3>
                     </div>
@@ -158,7 +161,7 @@
     </main>
     <footer>
         <h6>
-            Strona logowania do prywatnej bazy danych©
+            Strona zarządzania prywatną bazą danych©
         </h6>
     </footer>
 </body>
