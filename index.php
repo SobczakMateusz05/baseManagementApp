@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logowanie bazy danych</title>
+    <link rel="shortcut icon" type="image/png" href="protect.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,7 +49,7 @@
                     if($user_number>0){
                         $row=$result->fetch_assoc();
                         $_SESSION['user']=$row['user'];
-                        $_SESSION['type']=$row['type'];
+                        $_SESSION['SUU7TIF29TPO']=$row['type'];
                         $result->free_result();
                         
                         if($_SESSION['type']=="deafult"){
