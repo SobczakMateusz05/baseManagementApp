@@ -52,19 +52,19 @@
                         $_SESSION['SUU7TIF29TPO']=$row['type'];
                         $result->free_result();
                         
-                        if($_SESSION['type']=="deafult"){
+                        if($_SESSION['SUU7TIF29TPO']=="deafult"){
                             header('location: userdpanel.php');
                         }
-                        if($_SESSION['type']=="limited"){
+                        if($_SESSION['SUU7TIF29TPO']=="limited"){
                             header('location: userlpanel.php');
                         }
-                        if($_SESSION['type']=="viewer"){
+                        if($_SESSION['SUU7TIF29TPO']=="viewer"){
                             header('location: uservpanel.php');
                         }
-                        if($_SESSION['type']=="admin"){
+                        if($_SESSION['SUU7TIF29TPO']=="admin"){
                             header('location: controlpanel.php');
                         }
-                        if($_SESSION['type']=="waiting"){
+                        if($_SESSION['SUU7TIF29TPO']=="waiting"){
                             header('location: waiting.php');
                         }
                     }
