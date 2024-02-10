@@ -20,6 +20,9 @@
     <title>Panel Sterowania Bazą Danych</title>
 </head>
 <body>
+    <section id=>
+    
+    </section>
     <header>
         <h1>
             PANEL STEROWANIA BAZĄ DANYCH
@@ -29,21 +32,21 @@
     <main>
         <div class="mainblock">
             <div class="left">
-                <h2 class="disable-selection" onclick="base()">
+                <h2 class="disable-selection" onclick="toogle('base')">
                     Menu opcji
                 </h2>
                 <ul>
                     <li>
-                        <a class="disable-selection" onclick="managerecord()">Zarządzanie rekordami</a>
+                        <a class="disable-selection" onclick="toogle('managerecord')">Zarządzanie rekordami</a>
                     </li>
                     <li>
-                        <a class="disable-selection" onclick="showrecord()">Wyświetlanie zawartości tabel</a>
+                        <a class="disable-selection" onclick="toogle('showrecord')">Wyświetlanie zawartości tabel</a>
                     </li>
                     <li>
-                        <a class="disable-selection" onclick="query()">Kwerendy i pozostałe polecenia</a>
+                        <a class="disable-selection" onclick="toogle('query')">Kwerendy i pozostałe polecenia</a>
                     </li>
                     <li>
-                        <a class="disable-selection" onclick="managetable()">Zarządzanie tabelami</a>
+                        <a class="disable-selection" onclick="toogle('managetable')">Zarządzanie tabelami</a>
                     </li>
                 </ul>
             </div>
@@ -160,9 +163,11 @@
         </div>
     </main>
     <footer>
-        <h6>
-            Strona zarządzania prywatną bazą danych©
-        </h6>
+        <MARQUEE>
+            <h6>
+                Strona zarządzania prywatną bazą danych©
+            </h6>
+        </MARGUEE>
     </footer>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['SUU7TIF29TPO']="";
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -265,9 +266,11 @@
         </form>
     </main>
     <footer>
-        <h6>
-            Strona logowania do prywatnej bazy danych©
-        </h6>
+        <MARQUEE>
+            <h6>
+                Strona logowania do prywatnej bazy danych©
+            </h6>
+        </MARQUEE>
     </footer>
 </body>
 </html>
