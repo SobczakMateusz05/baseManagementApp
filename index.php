@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['SUU7TIF29TPO']="";
+    require_once "connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -43,9 +44,9 @@
                 }
                 if($variable==2){
                         
-                    $sql = "select u.user, t.name as type from users as u join types as t on u.type = t.id where u.user='$login' and u.password='$pass'";
+                    $sql = "SELECT u.user, t.name as type from users as u join types as t on u.type = t.id where u.user='$login' and u.password='$pass'";
 
-                    if($result = @$conn->query($sql)){
+                    if($result = $conn->query($sql)){
                         $user_number=$result->num_rows;
                     if($user_number>0){
                         $row=$result->fetch_assoc();
@@ -70,6 +71,7 @@
                         }
                     }
                     else{
+                        echo $sql .",".$user_number;
                         echo '<h4 class="missed">Błedny login lub/i hasło!</h4>';
                     }
                     }
@@ -204,11 +206,10 @@
                     }
     
                     if($operator==0){
-                        $sql="INSERT INTO users( user, password, name, email, type) values ('$login', '$pass', '$name', '$mail', 5)";
+                        $sql="INSERT INTO users(user, password, name, email, type) values ('$login', '$pass', '$name', '$mail', 5)";
 
                         if($result = $conn->query($sql)){
                             echo '<h3 class= "green">Złożono pomyślnie wniosek!<h3>';
-                            $result->free_result();
                         }
                     }
                     else{

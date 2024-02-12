@@ -139,6 +139,18 @@ form h2{
     text-decoration: overline;
 }
 
+table, th, td{
+    border: 1px solid black;
+    margin: 10px;
+    font-size: large;
+}
+th,td{
+    padding: 15px;
+}
+table{
+    border-collapse: collapse;
+}
+
 /*FOOTER*/
 
 footer{
