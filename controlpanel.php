@@ -35,9 +35,32 @@
         $sql="DELETE from $table where id=$id";
         $result=$conn->query($sql);
     }
-    if(isset($_GET["operation"])&&$_GET["operation"]==3||isset($_GET["operation"])&&$_GET["operation"]==2){
-        
+    if(isset($_GET["operation"])&&$_GET["operation"]==3&&$_POST["table"]!=0&&$_POST["kolumna"]!=""&&$_POST["wartosc"]!=""&&$_POST["id_rekordu"]!=""){
+        $table=$_POST["table"];
+        $kolumna=$_POST["kolumna"];
+        $wartosc=$_POST["wartosc"];
+        $id=$_POST["id_rekordu"];
+
+        $sql = "UPDATE $table SET $kolumna='$wartosc' where id=$id";
+        $result=$conn->query($sql);
     }
+    if(isset($_GET["operation"])&&$_GET["operation"]==5&&$_POST["query"]!=""){
+        $sql = $_POST["query"];
+
+        $result=$conn->query($sql);
+    }
+    if(isset($_GET["operation"])&&$_GET["operation"]==6&&$_POST["nowa_tabela"]!=""){
+        $nowa=$_POST["nowa_tabela"];
+        $sql = "CREATE TABLE $nowa";
+
+        $result=$conn->query($sql);
+    }
+    if(isset($_GET["operation"])&&$_GET["operation"]==7&&$_POST["table"]!=""){
+        $table=$_POST["table"];
+        $sql = "DROP TABLE $table";
+
+        $result=@$conn->query($sql);
+    } 
     ?>
     <header>
         <h1>
@@ -59,7 +82,7 @@
                         <a class="disable-selection" onclick="toogle('showrecord')">Wyświetlanie zawartości tabel</a>
                     </li>
                     <li>
-                        <a class="disable-selection" onclick="toogle('query')">Kwerendy i pozostałe polecenia</a>
+                        <a class="disable-selection" onclick="toogle('query')">Pozostałe polecenia</a>
                     </li>
                     <li>
                         <a class="disable-selection" onclick="toogle('managetable')">Zarządzanie tabelami</a>
@@ -174,6 +197,7 @@
                     </form>
                     <?php
                     if(isset($_GET["operation"])&&$_GET["operation"]==4){
+                        
                         if(isset($_POST["table"])&&$_POST["table"]!=0){
                             echo "<table>";
                             require_once "connect.php";
@@ -223,6 +247,7 @@
                         <input type="text" name="query" placeholder="Wpisz polecenie">
                         <input type="submit" name="polecenie" value="Wykonaj polecenie" class="margin">
                     </form>
+                    
                 </div>
                 <div class="option managetable
                 <?php 
