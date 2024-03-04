@@ -1,11 +1,11 @@
 <?php 
     session_start();
     $_SESSION['I9RSYLNY2K8S']="access";
-    if($_SESSION['SUU7TIF29TPO']!="admin"){
+    if($_SESSION['SUU7TIF29TPO']!="default"){
         header('Location:index.php');
     }
     require_once "function.php";
-    require_once "connectadmin.php";
+    require_once "connectdefault.php";
 ?>
 <?php
     
@@ -44,23 +44,6 @@
         $sql = "UPDATE $table SET $kolumna='$wartosc' where id=$id";
         $result=$conn->query($sql);
     }
-    if(isset($_GET["operation"])&&$_GET["operation"]==5&&$_POST["query"]!=""){
-        $sql = $_POST["query"];
-
-        $result=$conn->query($sql);
-    }
-    if(isset($_GET["operation"])&&$_GET["operation"]==6&&$_POST["nowa_tabela"]!=""){
-        $nowa=$_POST["nowa_tabela"];
-        $sql = "CREATE TABLE $nowa";
-
-        $result=$conn->query($sql);
-    }
-    if(isset($_GET["operation"])&&$_GET["operation"]==7&&$_POST["table"]!=""){
-        $table=$_POST["table"];
-        $sql = "DROP TABLE $table";
-
-        $result=@$conn->query($sql);
-    } 
     ?>
     <header>
         <h1>
@@ -82,12 +65,6 @@
                         <a class="disable-selection" onclick="toogle('showrecord')">Wyświetlanie zawartości tabel</a>
                     </li>
                     <li>
-                        <a class="disable-selection" onclick="toogle('query')">Pozostałe polecenia</a>
-                    </li>
-                    <li>
-                        <a class="disable-selection" onclick="toogle('managetable')">Zarządzanie tabelami</a>
-                    </li>
-                    <li>
                     <a class="disable-selection red" onclick="logout()">Wyloguj się</a>
                     </li>
                 </ul>
@@ -102,7 +79,7 @@
                 ">
                     <div class="center">
                         <h1>Witaj <?php echo ucfirst($_SESSION['user']); ?> w swoim panelu sterowania bazą!</h1>
-                        <h2>Twoje uprawnienia są na poziomie administartora.</h2>
+                        <h2>Twoje uprawnienia są na poziomie standardowym.</h2>
                         <h3>Aby przejsć do jakieś operacji skorzystaj z panelu po lewej</h3>
                     </div>
                     <div class="center down">
@@ -119,7 +96,7 @@
                 }
                 ?>
                 center">
-                    <form action="controlpanel.php?operation=1" method="POST" class="center">
+                    <form action="userdpanel.php?operation=1" method="POST" class="center">
                     <h2>Dodaj nowe rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -132,7 +109,7 @@
                         <input type="text" name="dane" placeholder="Wpisz dane" class="dane">
                         <input type="submit" name="rekord_dodaj" value="Dodaj rekordy" class="margin">
                     </form>
-                    <form action="controlpanel.php?operation=2" method="POST" class="center">
+                    <form action="userdpanel.php?operation=2" method="POST" class="center">
                         <h2>Usuń rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -145,7 +122,7 @@
                         <input type="number" name="id_rekordu" placeholder="Wpisz ID">
                         <input type="submit" name="rekord_usun" value="Usun rekordy" class="margin">
                     </form>
-                    <form action="controlpanel.php?operation=3" method="POST" class="center">
+                    <form action="userdpanel.php?operation=3" method="POST" class="center">
                         <h2>Edytuj rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -173,7 +150,7 @@
                 }
                 ?>
                 center">
-                    <form action="controlpanel.php?operation=4" method="POST" class="center">
+                    <form action="userdpanel.php?operation=4" method="POST" class="center">
                         <h2>Wypisz rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -231,53 +208,6 @@
                         }
                     }   
                     ?>
-                </div>
-                <div class="option query
-                <?php 
-                if(isset($_GET["operation"])&&$_GET["operation"]==5){
-
-                }
-                else{
-                    echo "disable";
-                }
-                ?>
-                center">
-                    <form action="controlpanel.php?operation=5" method="POST" class="center">
-                        <h2>Wykonaj dodatkowe polecenia</h2>
-                        <h4>Wpisz polecenie (bez średnika)</h4>
-                        <input type="text" name="query" placeholder="Wpisz polecenie">
-                        <input type="submit" name="polecenie" value="Wykonaj polecenie" class="margin">
-                    </form>
-                    
-                </div>
-                <div class="option managetable
-                <?php 
-                if(isset($_GET["operation"])&&$_GET["operation"]==6||isset($_GET["operation"])&&$_GET["operation"]==7){
-
-                }
-                else{
-                    echo "disable";
-                }
-                ?>
-                center">
-                    <form action="controlpanel.php?operation=6" method="POST" class="center">
-                        <h2>Utwórz tabele:</h2>
-                        <h4>Wprowadź nazwę tabeli oraz dane według wzoru:</h4>
-                        <h5>nazwa_tabeli(nazwa_kolumny typ_danych [PRIMARY KEY] [AUTO_INCREMENT], nazwa_kolumny typ_danych)</h5>
-                        <input type="text" name="nowa_tabela" placeholder="Wpisz według wzoru">
-                        <input type="submit" name="tabela_dodaj" value="Dodaj tabele" class="margin">
-                    </form>
-                    <form action="controlpanel.php?operation=7" method="POST" class="center">
-                        <h2>Usuń tabele:</h2>
-                        <h4>Wybierz tabele:</h4>
-                        <select name="table">
-                            <option value="0">Wybierz tabele</option>
-                            <?php
-                                tabele();
-                            ?>
-                        </select>
-                        <input type="submit" name="tabela_usun" value="Usuń tabele" class="margin">
-                    </form>
                 </div>
             </div>
         </div>

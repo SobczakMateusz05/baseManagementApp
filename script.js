@@ -7,3 +7,7 @@ function toogle(a){
     }
     record.classList.toggle("disable");
 }
+
+function logout(){
+    window.location.href="index.php";
+}

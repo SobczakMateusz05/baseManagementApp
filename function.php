@@ -2,7 +2,7 @@
 <?php
 if( $_SESSION['I9RSYLNY2K8S']=="access"){
     Function tabele(){
-            require 'connect.php';
+            require 'connectfunction.php';
             $query = "SHOW TABLES";
             $result = $conn->query($query);
             $tables = $result->fetch_all();

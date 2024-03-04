@@ -150,6 +150,13 @@ th,td{
 table{
     border-collapse: collapse;
 }
+.red{
+    color: red !important;
+}
+.red:hover{
+    background-color: red !important;
+    color: white !important;
+}
 
 /*FOOTER*/
 
