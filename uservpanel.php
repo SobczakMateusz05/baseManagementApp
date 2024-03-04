@@ -76,19 +76,23 @@
                             <option value="0">Wybierz tabele</option>
                             <?php
                                 $query = "SHOW TABLES";
-
                                 $result = $conn->query($query);
-                                $tables = $result->fetch_all();
-
-                                foreach($tables as $table)
-                                {
-                                    if($table[0]!='users'&&$table[0]!='types'){
-                                        echo "<option value=$table[0]>" . $table[0];
-                                        $query = "DESCRIBE " . $table[0];
-                                        $result = $conn->query($query);
-                                        echo "</option>";
+                                
+                                if ($result) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $tableName = $row['Tables_in_db701133'];
+                                        if ($tableName != 'users' && $tableName != 'types') {
+                                            echo "<option value='$tableName'>$tableName";
+                                            $innerQuery = "DESCRIBE $tableName";
+                                            $innerResult = $conn->query($innerQuery);
+                                            if ($innerResult) {
+                                                echo "</option>";
+                                            }
+                                        }
                                     }
-                                }    
+                                } else {
+                                    // Obsłuż błąd zapytania
+                                } 
                             ?>
                         </select>
                         <input type="submit" name="wypisz" value="Wypisz rekordy" class="margin">
@@ -96,7 +100,7 @@
                     <?php
                     if(isset($_GET["operation"])&&$_GET["operation"]==4){
                         
-                        if(isset($_POST["table"])&&$_POST["table"]!=0){
+                        if(isset($_POST["table"])){
                             echo "<table>";
                             $table=$_POST["table"];
                             $sql = "SHOW COLUMNS FROM $table";
