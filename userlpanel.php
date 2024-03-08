@@ -14,7 +14,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="stylecontrol.css">
     <link rel="shortcut icon" type="image/png" href="manage.png">
     <script src="script.js"></script>
@@ -26,17 +26,40 @@
         $table=$_POST["table"];
         $dane=$_POST["dane"];
         $sql="INSERT INTO $table values($dane)";
-        if($result=@$conn->query($sql)){}
-        else{}
+        $result=@$conn->query($sql);
+        header('Location: userdpanel.php?chose=1');
     }
     ?>
     <header>
         <h1>
             PANEL STEROWANIA BAZĄ DANYCH
+            <header>
+        <div></div>
+        <h1>
+            Menu Bazy Danych
         </h1>
+        <div id="burger" onclick="nav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
     <div class="line"></div>
+   
     <main>
+    <div class="nav disable">
+        <ul>
+            <li>
+                <a class="disable-selection" onclick="toogle('managerecord')">Zarządzanie rekordami</a>
+            </li>
+            <li>
+                <a class="disable-selection" onclick="toogle('showrecord')">Wyświetlanie zawartości tabel</a>
+            </li>
+            <li>
+                <a class="disable-selection red" onclick="logout()">Wyloguj się</a>
+            </li>
+        </ul>
+    </div>
         <div class="mainblock">
             <div class="left">
                 <h2 class="disable-selection" onclick="toogle('base')">
@@ -57,7 +80,7 @@
             <div class="right">
                 <div class="option base
                 <?php
-                if(isset($_GET["operation"])){
+                if(isset($_GET["operation"])||isset($_GET["chose"])){
                     echo "disable";
                 }
                 ?>
@@ -65,7 +88,7 @@
                     <div class="center">
                         <h1>Witaj <?php echo ucfirst($_SESSION['user']); ?> w swoim panelu sterowania bazą!</h1>
                         <h2>Twoje uprawnienia są na poziomie ograniczonym.</h2>
-                        <h3>Aby przejsć do jakieś operacji skorzystaj z panelu po lewej</h3>
+                        <h3>Aby przejsć do jakieś operacji skorzystaj z menu</h3>
                     </div>
                     <div class="center down">
                         <h4>Nie zepsuj nic 😀</h4>
@@ -73,7 +96,7 @@
                 </div>
                 <div class="option managerecord 
                 <?php 
-                if(isset($_GET["operation"])&&$_GET["operation"]==1||isset($_GET["operation"])&&$_GET["operation"]==2||isset($_GET["operation"])&&$_GET["operation"]==3){
+                if(isset($_GET["chose"])&&$_GET["chose"]==1||isset($_GET["chose"])&&$_GET["chose"]==2||isset($_GET["chose"])&&$_GET["chose"]==3){
                     
                 }
                 else{

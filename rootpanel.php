@@ -1,7 +1,7 @@
 <?php 
     session_start();
     $_SESSION['I9RSYLNY2K8S']="access";
-    if($_SESSION['SUU7TIF29TPO']!="admin"){
+    if($_SESSION['SUU7TIF29TPO']!="root"){
         header('Location:index.php');
     }
     require_once "function.php";
@@ -27,14 +27,14 @@
         $dane=$_POST["dane"];
         $sql="INSERT INTO $table values($dane)";
         $result=@$conn->query($sql);
-        header('Location: controlpanel.php?chose=1');
+        header('Location: rootpanel.php?chose=1');
     }
     if(isset($_GET["operation"])&&$_GET["operation"]==2&&$_POST["id_rekordu"]!=""){
         $table=$_POST["table"];
         $id=$_POST["id_rekordu"]; 
         $sql="DELETE from $table where id=$id";
         $result=$conn->query($sql);
-        header('Location: controlpanel.php?chose=2');
+        header('Location: rootpanel.php?chose=2');
     }
     if(isset($_GET["operation"])&&$_GET["operation"]==3&&$_POST["kolumna"]!=""&&$_POST["wartosc"]!=""&&$_POST["id_rekordu"]!=""){
         $table=$_POST["table"];
@@ -44,34 +44,34 @@
 
         $sql = "UPDATE $table SET $kolumna='$wartosc' where id=$id";
         $result=$conn->query($sql);
-        header('Location: controlpanel.php?chose=3');
+        header('Location: rootpanel.php?chose=3');
     }
     if(isset($_GET["operation"])&&$_GET["operation"]==6&&$_POST["nowa_tabela"]!=""){
         $nowa=$_POST["nowa_tabela"];
         $sql = "CREATE TABLE $nowa";
 
         $result=$conn->query($sql);
-        header('Location: controlpanel.php?chose=6');
+        header('Location: rootpanel.php?chose=6');
     }
     if(isset($_GET["operation"])&&$_GET["operation"]==7&&$_POST["table"]!=""){
         $table=$_POST["table"];
         $sql = "DROP TABLE $table";
 
         $result=@$conn->query($sql);
-        header('Location: controlpanel.php?chose=7');
+        header('Location: rootpanel.php?chose=7');
     }
     if(isset($_GET["operation"])&&$_GET["operation"]==8&&$_POST["username"]!=0&&$_POST["newtype"]!=0){
         $username=$_POST["username"];
         $newtype=$_POST["newtype"];
         $sql="UPDATE users SET type=$newtype where id=$username";
         $result=$conn->query($sql);
-        header('Location: controlpanel.php?chose=8');
+        header('Location: rootpanel.php?chose=8');
     }
     if(isset($_GET["operation"])&&$_GET["operation"]==9&&$_POST["username"]!=0){
         $username=$_POST["username"];
         $sql="DELETE from users where id=$username";
         $result=$conn->query($sql);
-        header('Location: controlpanel.php?chose=9');
+        header('Location: rootpanel.php?chose=9');
     }
     ?>
     <header>
@@ -97,6 +97,9 @@
                         <a class="disable-selection" onclick="toogle('showrecord')">Wyświetlanie zawartości tabel</a>
                     </li>
                     <li>
+                        <a class="disable-selection" onclick="toogle('query')">Pozostałe polecenia</a>
+                    </li>
+                    <li>
                         <a class="disable-selection" onclick="toogle('managetable')">Zarządzanie tabelami</a>
                     </li>
                     <li>
@@ -120,6 +123,9 @@
                         <a class="disable-selection" onclick="toogle('showrecord')">Wyświetlanie zawartości tabel</a>
                     </li>
                     <li>
+                        <a class="disable-selection" onclick="toogle('query')">Pozostałe polecenia</a>
+                    </li>
+                    <li>
                         <a class="disable-selection" onclick="toogle('managetable')">Zarządzanie tabelami</a>
                     </li>
                     <li>
@@ -140,7 +146,7 @@
                 ">
                     <div class="center">
                         <h1>Witaj <?php echo ucfirst($_SESSION['user']); ?> w swoim panelu sterowania bazą!</h1>
-                        <h2>Twoje uprawnienia są na poziomie administartora.</h2>
+                        <h2>Twoje uprawnienia są na poziomie roota.</h2>
                         <h3>Aby przejsć do jakieś operacji skorzystaj z menu</h3>
                     </div>
                     <div class="center down">
@@ -157,7 +163,7 @@
                 }
                 ?>
                 center">
-                    <form action="controlpanel.php?operation=1" method="POST" class="center">
+                    <form action="rootpanel.php?operation=1" method="POST" class="center">
                     <h2>Dodaj nowe rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -170,7 +176,7 @@
                         <input type="text" name="dane" placeholder="Wpisz dane" class="dane">
                         <input type="submit" name="rekord_dodaj" value="Dodaj rekordy" class="margin">
                     </form>
-                    <form action="controlpanel.php?operation=2" method="POST" class="center">
+                    <form action="rootpanel.php?operation=2" method="POST" class="center">
                         <h2>Usuń rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -183,7 +189,7 @@
                         <input type="number" name="id_rekordu" placeholder="Wpisz ID">
                         <input type="submit" name="rekord_usun" value="Usun rekordy" class="margin">
                     </form>
-                    <form action="controlpanel.php?operation=3" method="POST" class="center">
+                    <form action="rootpanel.php?operation=3" method="POST" class="center">
                         <h2>Edytuj rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -211,7 +217,7 @@
                 }
                 ?>
                 center">
-                    <form action="controlpanel.php?operation=4" method="POST" class="center">
+                    <form action="rootpanel.php?operation=4" method="POST" class="center">
                         <h2>Wypisz rekordy</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -275,6 +281,24 @@
                     }   
                     ?>
                 </div>
+                <div class="option query
+                <?php 
+                if(isset($_GET["chose"])&&$_GET["chose"]==5){
+
+                }
+                else{
+                    echo "disable";
+                }
+                ?>
+                center">
+                    <form action="rootpanel.php?operation=5" method="POST" class="center">
+                        <h2>Wykonaj dodatkowe polecenia</h2>
+                        <h4>Wpisz polecenie (bez średnika)</h4>
+                        <input type="text" name="query" placeholder="Wpisz polecenie">
+                        <input type="submit" name="polecenie" value="Wykonaj polecenie" class="margin">
+                    </form>
+                    
+                </div>
                 <div class="option managetable
                 <?php 
                 if(isset($_GET["chose"])&&$_GET["chose"]==6||isset($_GET["chose"])&&$_GET["chose"]==7){
@@ -285,14 +309,14 @@
                 }
                 ?>
                 center">
-                    <form action="controlpanel.php?operation=6" method="POST" class="center">
+                    <form action="rootpanel.php?operation=6" method="POST" class="center">
                         <h2>Utwórz tabele:</h2>
                         <h4>Wprowadź nazwę tabeli oraz dane według wzoru:</h4>
                         <h5>nazwa_tabeli(nazwa_kolumny typ_danych [PRIMARY KEY] [AUTO_INCREMENT], nazwa_kolumny typ_danych)</h5>
                         <input type="text" name="nowa_tabela" placeholder="Wpisz według wzoru">
                         <input type="submit" name="tabela_dodaj" value="Dodaj tabele" class="margin">
                     </form>
-                    <form action="controlpanel.php?operation=7" method="POST" class="center">
+                    <form action="rootpanel.php?operation=7" method="POST" class="center">
                         <h2>Usuń tabele:</h2>
                         <h4>Wybierz tabele:</h4>
                         <select name="table">
@@ -314,13 +338,13 @@
                 }
                 ?>
                 center">
-                    <form action="controlpanel.php?operation=8" method="POST" class="center">
+                    <form action="rootpanel.php?operation=8" method="POST" class="center">
                         <h2>Zmień typ konta użytkownika</h2>
                         <h4>Wybierz użytkownika:</h4>
                         <select name="username">
                             <option value="0">Wybierz użytkownika...</option>
                             <?php
-                                $sql = "SELECT u.id, u.user, t.name from users as u join types as t on u.type=t.id where t.id != 4 and t.id != 6 order by u.type, user";
+                                $sql = "SELECT u.id, u.user, t.name from users as u join types as t on u.type=t.id where t.id != 6 order by u.type, user";
                                 $result = $conn -> query($sql);
                                 while($row=$result->fetch_assoc()){
                                     echo '<option value="'. $row["id"].'">'. ucfirst($row["user"]). " (".ucfirst($row["name"]). ") </option>";
@@ -331,7 +355,7 @@
                         <select name="newtype">
                             <option value="0">Wybierz typ konta...</option>
                             <?php
-                                $sql="SELECT * from types where id != 4 and id != 6";
+                                $sql="SELECT * from types where id != 6 ";
                                 $result = $conn -> query($sql);
                                 while($row=$result->fetch_assoc()){
                                     echo '<option value="'. $row["id"]. '">'.ucfirst($row["name"])."</option>";
@@ -340,13 +364,13 @@
                         </select>
                         <input type="submit" name="edytuj-uzytkownik" value="Edytuj typ konta" class="margin">
                     </form>
-                    <form action="controlpanel.php?operation=9" method="POST" class="center">
+                    <form action="rootpanel.php?operation=9" method="POST" class="center">
                         <h2>Usuń konto użytkownika</h2>
                         <h4>Wybierz użytkownika:</h4>
                         <select name="username">
                         <option value="0">Wybierz użytkownika...</option>
                             <?php
-                                $sql = "SELECT u.id, u.user, t.name from users as u join types as t on u.type=t.id where t.id != 4 and t.id != 6 order by u.type, user";
+                                $sql = "SELECT u.id, u.user, t.name from users as u join types as t on u.type=t.id where t.id != 6 order by u.type, user";
                                 $result = $conn -> query($sql);
                                 while($row=$result->fetch_assoc()){
                                     echo '<option value="'. $row["id"].'">'. ucfirst($row["user"]). " (".ucfirst($row["name"]). ") </option>";

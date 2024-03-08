@@ -14,20 +14,36 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="stylecontrol.css">
     <link rel="shortcut icon" type="image/png" href="manage.png">
     <script src="script.js"></script>
     <title>Panel Sterowania Bazą Danych</title>
 </head>
 <body>
-    <header>
+<header>
+        <div></div>
         <h1>
-            PANEL STEROWANIA BAZĄ DANYCH
+            Menu Bazy Danych
         </h1>
+        <div id="burger" onclick="nav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
     <div class="line"></div>
+   
     <main>
+    <div class="nav disable">
+        <ul>
+            <li>
+                <a class="disable-selection" onclick="toogle('showrecord')">Wyświetlanie zawartości tabel</a>
+            <li>
+                <a class="disable-selection red" onclick="logout()">Wyloguj się</a>
+            </li>
+        </ul>
+    </div>
         <div class="mainblock">
             <div class="left">
                 <h2 class="disable-selection" onclick="toogle('base')">
@@ -53,7 +69,7 @@
                     <div class="center">
                         <h1>Witaj <?php echo ucfirst($_SESSION['user']); ?> w swoim panelu sterowania bazą!</h1>
                         <h2>Twoje uprawnienia są na poziomie przeglądającego.</h2>
-                        <h3>Aby przejsć do jakieś operacji skorzystaj z panelu po lewej</h3>
+                        <h3>Aby przejsć do jakieś operacji skorzystaj z menu</h3>
                     </div>
                     <div class="center down">
                         <h4>Nie zepsuj nic 😀</h4>

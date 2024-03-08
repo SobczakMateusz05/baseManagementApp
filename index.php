@@ -7,7 +7,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Logowanie bazy danych</title>
     <link rel="shortcut icon" type="image/png" href="protect.png">
     <link rel="stylesheet" href="style.css">
@@ -43,30 +43,40 @@
                 }
                 if($variable==2){
                         
-                    $sql = "SELECT u.user, t.name as type from users as u join types as t on u.type = t.id where u.user='$login' and u.password='$pass'";
+                    $sql = "SELECT u.user, t.name as type, u.password from users as u join types as t on u.type = t.id where u.user='$login' and u.password='$pass'";
 
                     if($result = $conn->query($sql)){
                         $user_number=$result->num_rows;
                     if($user_number>0){
                         $row=$result->fetch_assoc();
-                        $_SESSION['user']=$row['user'];
-                        $_SESSION['SUU7TIF29TPO']=$row['type'];
-                        $result->free_result();
-                        
-                        if($_SESSION['SUU7TIF29TPO']=="default"){
-                            header('location: userdpanel.php');
+                            if($row["password"]==$pass){
+                            $_SESSION['user']=$row['user'];
+                            $_SESSION['SUU7TIF29TPO']=$row['type'];
+                            $result->free_result();
+                            
+                            switch ($_SESSION['SUU7TIF29TPO']) {
+                                case "default":
+                                    header('location: userdpanel.php');
+                                    break;
+                                case "limited":
+                                    header('location: userlpanel.php');
+                                    break;
+                                case "viewer":
+                                    header('location: uservpanel.php');
+                                    break;
+                                case "admin":
+                                    header('location: controlpanel.php');
+                                    break;
+                                case "waiting":
+                                    header('location: waiting.php');
+                                    break;
+                                case "root":
+                                    header('location: rootpanel.php');
+                                    break;
+                                }
                         }
-                        if($_SESSION['SUU7TIF29TPO']=="limited"){
-                            header('location: userlpanel.php');
-                        }
-                        if($_SESSION['SUU7TIF29TPO']=="viewer"){
-                            header('location: uservpanel.php');
-                        }
-                        if($_SESSION['SUU7TIF29TPO']=="admin"){
-                            header('location: controlpanel.php');
-                        }
-                        if($_SESSION['SUU7TIF29TPO']=="waiting"){
-                            header('location: waiting.php');
+                        else{
+                            echo '<h4 class="missed">Błedny login lub/i hasło!</h4>';
                         }
                     }
                     else{
@@ -106,7 +116,7 @@
             ?>
             Hasło:</p>
             <input type="password" name="password">
-            <div>
+            <div class="sub">
             <input type="submit" value="Zaloguj się" class="button" name="log">
             </div>
         </form>
@@ -158,7 +168,13 @@
                     }
                     else{
                         $mail=$_POST["mail"];
-                        $variable+=1;
+                        if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                            $variable+=1;
+                        } else {
+                            echo '<h4 class="missed"> Wprowadzono błędy adres email!</h4>';
+                            $ermail=7;
+                        }
+                        
                     }
                 }
                 else{
@@ -278,7 +294,7 @@
             ?>
             Hasło:</p>
             <input type="password" name="password">
-            <div>
+            <div class="sub">
             <input type="submit" value="Złóż wniosek" name="reg" class="button">
             </div>
         </form>
