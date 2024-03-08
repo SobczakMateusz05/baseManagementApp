@@ -7,7 +7,7 @@ if( $_SESSION['I9RSYLNY2K8S']=="access"){
         $result = $conn->query($query);
         
         if ($result) {
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_all()) {
                 $table = $row['Tables_in_db701133'];
                 if ($table != "users" && $table != "types") {
                     echo "<option value='$table'>$table (";
@@ -15,7 +15,7 @@ if( $_SESSION['I9RSYLNY2K8S']=="access"){
                     $innerResult = $conn->query($query);
                     if ($innerResult) {
                         $columns = array();
-                        while ($column = $innerResult->fetch_assoc()) {
+                        while ($column = $innerResult->fetch_all()) {
                             $columns[] = $column['Field'];
                         }
                         echo implode(", ", $columns);

@@ -69,3 +69,23 @@ h6{
     padding: 15px;
     font-size:medium;
 }
+
+
+/* Stylizacja dla telefonów o szerokości mniejszej niż 600px (np. iPhone SE) */
+@media screen and (max-width: 599px) {
+    h6{
+        max-width: 405px;
+    }
+}
+
+/* Stylizacja dla telefonów o szerokości między 600px a 959px (np. większe telefony jak iPhone 11) */
+@media screen and (min-width: 600px) and (max-width: 959px) {
+    /* Dodaj tu swoje style dla telefonów */
+    
+}
+
+/* Stylizacja dla telefonów o szerokości większej niż 960px (np. duże telefony lub tablety w trybie pionowym) */
+@media screen and (min-width: 960px) {
+    /* Dodaj tu swoje style dla telefonów */
+    
+}
