@@ -95,8 +95,8 @@
                                 $result = $conn->query($query);
                                 
                                 if ($result) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        $tableName = $row['Tables_in_db701133'];
+                                    while ($row = $result->fetch_array()) {
+                                        $tableName = $row[0];
                                         if ($tableName != 'users' && $tableName != 'types') {
                                             echo "<option value='$tableName'>$tableName";
                                             $innerQuery = "DESCRIBE $tableName";

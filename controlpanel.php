@@ -221,8 +221,8 @@
                                 $result = $conn->query($query);
                                 
                                 if ($result) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        $tableName = $row['Tables_in_db701133'];
+                                    while ($row = $result->fetch_array()) {
+                                        $tableName = $row[0];
                                         if ($tableName != 'users' && $tableName != 'types') {
                                             echo "<option value='$tableName'>$tableName";
                                             $innerQuery = "DESCRIBE $tableName";
@@ -250,10 +250,10 @@
                             $j=0;
                             if($result=$conn->query($sql)){
                                 echo "<tr>";
-                                while($row=$result->fetch_assoc()){
-                                    echo "<th>".$row["Field"]. "</th>";
+                                while($row=$result->fetch_array()){
+                                    echo "<th>".$row[0]. "</th>";
                                     $num_column+=1;
-                                    $name[$j]=$row["Field"];
+                                    $name[$j]=$row[0];
                                     $j+=1;
                                 }
                                 echo "</tr>";
