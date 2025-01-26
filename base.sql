@@ -104,7 +104,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user`, `password`, `name`, `email`, `type`) VALUES
-(1, 'mateusz', 'Seba2710', NULL, NULL, 4);
+(1, 'admin', 'zaq1ZAQ!', NULL, NULL, 4);
 
 --
 -- Indeksy dla zrzutów tabel
