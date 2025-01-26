@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1deb5ubuntu1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 02:13 PM
--- Wersja serwera: 10.4.32-MariaDB
--- Wersja PHP: 8.2.12
+-- Host: localhost:3306
+-- Czas generowania: 26 Sty 2025, 18:03
+-- Wersja serwera: 8.0.40-0ubuntu0.22.04.1
+-- Wersja PHP: 8.1.2-1ubuntu2.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,49 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db701133`
+-- Baza danych: `base`
 --
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `tajna`
---
-
-CREATE TABLE `tajna` (
-  `id` int(11) NOT NULL,
-  `kryptonim` text NOT NULL,
-  `jednostka` int(11) NOT NULL,
-  `liczba` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tajna`
---
-
-INSERT INTO `tajna` (`id`, `kryptonim`, `jednostka`, `liczba`) VALUES
-(1, 'kotlecik', 6, 2);
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `testy`
---
-
-CREATE TABLE `testy` (
-  `id` int(11) NOT NULL,
-  `kolumna1` int(11) DEFAULT NULL,
-  `kolumna2` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `testy`
---
-
-INSERT INTO `testy` (`id`, `kolumna1`, `kolumna2`) VALUES
-(1, 554, 'kot'),
-(2, 554, 'pies'),
-(3, 345, 'mucha');
 
 -- --------------------------------------------------------
 
@@ -69,12 +28,12 @@ INSERT INTO `testy` (`id`, `kolumna1`, `kolumna2`) VALUES
 --
 
 CREATE TABLE `types` (
-  `id` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL
+  `id` int NOT NULL,
+  `name` varchar(25) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `types`
+-- Zrzut danych tabeli `types`
 --
 
 INSERT INTO `types` (`id`, `name`) VALUES
@@ -91,16 +50,16 @@ INSERT INTO `types` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `user` varchar(50) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `email` varchar(150) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL
+  `id` int NOT NULL,
+  `user` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Zrzut danych tabeli `users`
 --
 
 INSERT INTO `users` (`id`, `user`, `password`, `name`, `email`, `type`) VALUES
@@ -109,12 +68,6 @@ INSERT INTO `users` (`id`, `user`, `password`, `name`, `email`, `type`) VALUES
 --
 -- Indeksy dla zrzutów tabel
 --
-
---
--- Indeksy dla tabeli `testy`
---
-ALTER TABLE `testy`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `types`
@@ -129,26 +82,20 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla zrzuconych tabel
 --
 
 --
--- AUTO_INCREMENT for table `testy`
---
-ALTER TABLE `testy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `types`
+-- AUTO_INCREMENT dla tabeli `types`
 --
 ALTER TABLE `types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
