@@ -31,7 +31,7 @@ This web application was created as **basic test project** to manage database. I
 ## POLSKI
 
 ## Założenia projektu
-Ta aplikacja internetowa została stworzona jako **podstawowy projekt testowy** do zarządzania bazą danych. Ma kilka tabel testowych w bazie danych. Została stworzona w języku polskim (może być przetłumaczaczona na twój język).
+Ta aplikacja internetowa została stworzona jako **podstawowy projekt testowy** do zarządzania bazą danych. Ma kilka tabel testowych w bazie danych. Została stworzona w języku polskim (można przetłumaczyć wszystko na własny język).
 
 ## Technology Stack
 
