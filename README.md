@@ -47,7 +47,7 @@ Ta aplikacja internetowa została stworzona jako **podstawowy projekt testowy** 
 - **MariaDB**
 - **MySQL**
 
-### Implementacja systemu
+## Implementacja systemu
 
 1. Zaimportuj bazę danych (base.sql) do swojego serwera MySQL lub MariaDB. **Domyślny użytkownik to admin z hasłem zaq1ZAQ!** i utwórz specjalnych użytkowników (możesz użyć jednego).
 2. Zmień informacje o bazie danych w **connectadmin.php**, **connectdefault.php**,** connectfunction.php**, **connectlimit.php**, **connectlog.php** i **connectview.php** ($db_host to link do twojego serwera, $db_user to użytkownik bazy danych, $db_pass to hasło użytkownika bazy danych, $db_name to nazwa twojej bazy danych). Wszystkie pliki reprezentują różne uprawnienia (możesz ustawić ten sam profil wszędzie, ale wpłynie to na bezpieczeństwo).
