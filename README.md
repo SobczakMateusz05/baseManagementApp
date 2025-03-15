@@ -1,8 +1,22 @@
-# BASE MANAGMENT APP
+<h1 align="center"> BASE MANAGMENT APP </h1> <br>
+
+## Table of Contents/Spis treści
+- [ENGLISH](#english)
+   - [Project Assumptions](#project-assumptions)
+   - [Technology Stack](#technology-stack)
+      - [Languages](#languages)
+      - [Databasese](#databases)
+   - [System Implementation](#system-implementation)
+- [POLSKI](#polski)
+   - [Założenia Projektu](#założenia-projektu)
+   - [Technology Stack](#technology-stack-1)
+      - [Języki](#języki)
+      - [Bazy Danych](#bazy-danych)
+   - [Implementacja Systemu](#implementacja-systemu)
 
 ## ENGLISH
 
-## Project assumptions
+## Project Assumptions
 
 This web application was created as **basic test project** to manage database. It have some testing tables in database. Created in polish language (you can translate all to your own language). 
 
@@ -21,7 +35,7 @@ This web application was created as **basic test project** to manage database. I
 - **MariaDB**
 - **MySQL**
 
-## System implementation
+## System Implementation
 
 1. Import database (base.sql) to your MySQL or MariaDB Server. **Default user is admin with password zaq1ZAQ!** and create special users (you can use one).
 2.  Change db information about your databse in **connectadmin.php**, **connectdefault.php**, **connectfunction.php**, **connectlimit.php**, **connectlog.php** and **connectview.php** ($db_host is your server link, $db_user is your db user, $db_pass is your db user pass, $db_name is name of your db) all files represent diffrent permisions (you can set everywhere same profile, but it affect safety).
@@ -30,7 +44,7 @@ This web application was created as **basic test project** to manage database. I
 
 ## POLSKI
 
-## Założenia projektu
+## Założenia Projektu
 Ta aplikacja internetowa została stworzona jako **podstawowy projekt testowy** do zarządzania bazą danych. Ma kilka tabel testowych w bazie danych. Została stworzona w języku polskim (można przetłumaczyć wszystko na własny język).
 
 ## Technology Stack
@@ -43,11 +57,11 @@ Ta aplikacja internetowa została stworzona jako **podstawowy projekt testowy** 
 - **PHP**
 - **SQL**
 
-### Bazy danych
+### Bazy Danych
 - **MariaDB**
 - **MySQL**
 
-## Implementacja systemu
+## Implementacja Systemu
 
 1. Zaimportuj bazę danych (base.sql) do swojego serwera MySQL lub MariaDB. **Domyślny użytkownik to admin z hasłem zaq1ZAQ!** i utwórz specjalnych użytkowników (możesz użyć jednego).
 2. Zmień informacje o bazie danych w **connectadmin.php**, **connectdefault.php**,** connectfunction.php**, **connectlimit.php**, **connectlog.php** i **connectview.php** ($db_host to link do twojego serwera, $db_user to użytkownik bazy danych, $db_pass to hasło użytkownika bazy danych, $db_name to nazwa twojej bazy danych). Wszystkie pliki reprezentują różne uprawnienia (możesz ustawić ten sam profil wszędzie, ale wpłynie to na bezpieczeństwo).
